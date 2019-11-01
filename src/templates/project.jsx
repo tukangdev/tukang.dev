@@ -29,6 +29,14 @@ const ProjectTitle = styled("div")`
   text-align: center;
 `
 
+const ProjectFooter = styled("div")`
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`
+
 const ProjectBody = styled("div")`
   max-width: 550px;
   margin: 0 auto;
@@ -62,11 +70,15 @@ const Project = ({ project, meta }) => {
           },
           {
             property: `og:title`,
-            content: `${project.project_title[0].text} | Prist, Gatsby & Prismic Starter`,
+            content: `${project.project_title[0].text} | Space for software engineers`,
           },
           {
             property: `og:description`,
             content: meta.description,
+          },
+          {
+            property: `og:image`,
+            content: project.project_preview_thumbnail.url,
           },
           {
             property: `og:type`,
@@ -85,6 +97,10 @@ const Project = ({ project, meta }) => {
             content: meta.title,
           },
           {
+            property: `twitter:image`,
+            content: project.project_preview_thumbnail.url,
+          },
+          {
             name: `twitter:description`,
             content: meta.description,
           },
@@ -99,6 +115,26 @@ const Project = ({ project, meta }) => {
         )}
         <ProjectBody>
           {RichText.render(project.project_description)}
+          <br />
+          <ProjectFooter>
+            <span>Share this post: </span>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                `https://tukang.dev/work/${project._meta.uid}`
+              )}`}
+              style={{ margin: "0 1rem" }}
+            >
+              Facebook
+            </a>
+            <a
+              href={`https://twitter.com/share?url=${encodeURIComponent(
+                `https://tukang.dev/work/${project._meta.uid}`
+              )}`}
+              style={{ margin: "0 1rem" }}
+            >
+              Twitter
+            </a>
+          </ProjectFooter>
           <WorkLink to={"/work"}>
             <Button className="Button--secondary">See other work</Button>
           </WorkLink>

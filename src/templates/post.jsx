@@ -59,6 +59,14 @@ const PostTitle = styled("div")`
   }
 `
 
+const PostFooter = styled("div")`
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`
+
 const PostBody = styled("div")`
   max-width: 550px;
   margin: 0 auto;
@@ -105,11 +113,15 @@ const Post = ({ post, meta }) => {
           },
           {
             property: `og:title`,
-            content: `${post.post_title[0].text} | Prist, Gatsby & Prismic Starter`,
+            content: `${post.post_title[0].text} | Space for software engineers`,
           },
           {
             property: `og:description`,
             content: meta.description,
+          },
+          {
+            property: `og:image`,
+            content: post.post_hero_image,
           },
           {
             property: `og:type`,
@@ -126,6 +138,10 @@ const Post = ({ post, meta }) => {
           {
             name: `twitter:title`,
             content: meta.title,
+          },
+          {
+            property: `twitter:image`,
+            content: post.post_hero_image,
           },
           {
             name: `twitter:description`,
@@ -151,6 +167,26 @@ const Post = ({ post, meta }) => {
           </PostHeroContainer>
         )}
         <PostBody>{RichText.render(post.post_body)}</PostBody>
+        <br />
+        <PostFooter>
+          <span>Share this post: </span>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              `https://tukang.dev/blog/${post._meta.uid}`
+            )}`}
+            style={{ margin: "0 1rem" }}
+          >
+            Facebook
+          </a>
+          <a
+            href={`https://twitter.com/share?url=${encodeURIComponent(
+              `https://tukang.dev/blog/${post._meta.uid}`
+            )}`}
+            style={{ margin: "0 1rem" }}
+          >
+            Twitter
+          </a>
+        </PostFooter>
       </Layout>
     </>
   )

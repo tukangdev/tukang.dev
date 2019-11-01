@@ -1,4 +1,5 @@
 import React from "react"
+import colors from "../../styles/colors"
 
 const Logo = () => (
   <svg width="150" height="31" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +28,7 @@ const Logo = () => (
     <g>
       <title>Layer 1</title>
       <text
-        fill="#3b99fe"
+        fill={colors.blue400}
         stroke-width="0"
         stroke-opacity="null"
         x="-1286.373659"
@@ -43,7 +44,7 @@ const Logo = () => (
         tukang
       </text>
       <text
-        fill="#043390"
+        fill={colors.blue600}
         stroke-width="0"
         stroke-opacity="null"
         x="-575.418962"
