@@ -61,7 +61,7 @@ const Project = ({ project, meta }) => {
   return (
     <>
       <Helmet
-        title={`${project.project_title[0].text} | Space for software engineers`}
+        title={`${project.project_title[0].text} | Building software solutions`}
         titleTemplate={`%s | Project`}
         meta={[
           {
@@ -70,7 +70,7 @@ const Project = ({ project, meta }) => {
           },
           {
             property: `og:title`,
-            content: `${project.project_title[0].text} | Space for software engineers`,
+            content: `${project.project_title[0].text} | Building software solutions`,
           },
           {
             property: `og:description`,

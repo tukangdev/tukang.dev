@@ -104,7 +104,7 @@ const Post = ({ post, meta }) => {
   return (
     <>
       <Helmet
-        title={`${post.post_title[0].text} | Space for software engineers`}
+        title={`${post.post_title[0].text} | Building software solutions`}
         titleTemplate={`%s | Post`}
         meta={[
           {
@@ -113,7 +113,7 @@ const Post = ({ post, meta }) => {
           },
           {
             property: `og:title`,
-            content: `${post.post_title[0].text} | Space for software engineers`,
+            content: `${post.post_title[0].text} | Building software solutions`,
           },
           {
             property: `og:description`,

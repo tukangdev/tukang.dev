@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Tukang Dev`,
-    description: `Tukang Dev is a space for software engineers to...`,
+    description: `Building software solutions`,
     author: `Amin Roslan | aminroslan.com`,
   },
   plugins: [
