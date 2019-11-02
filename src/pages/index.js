@@ -10,6 +10,7 @@ import Button from "components/_ui/Button"
 import About from "components/About"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
+import Technologies from "../components/Technologies"
 
 const Hero = styled("div")`
   padding-top: 2.5em;
@@ -117,7 +118,7 @@ const WorkAction = styled(Link)`
   }
 `
 
-const RenderBody = ({ home, projects, meta }) => (
+const RenderBody = ({ home, projects, meta, technologies }) => (
   <>
     <Helmet
       title={meta.title}
@@ -185,6 +186,10 @@ const RenderBody = ({ home, projects, meta }) => (
       </WorkAction>
     </Section>
     <Section>
+      {RichText.render(home.technologies)}
+      <Technologies technologies={technologies} />
+    </Section>
+    <Section>
       {RichText.render(home.about_title)}
       <About bio={home.about_bio} socialLinks={home.about_links} />
     </Section>
@@ -196,12 +201,18 @@ export default ({ data }) => {
   const doc = data.prismic.allHomepages.edges.slice(0, 1).pop()
   const projects = data.prismic.allProjects.edges
   const meta = data.site.siteMetadata
+  const technologies = data.prismic.allTechnologys.edges
 
   if (!doc || !projects) return null
 
   return (
     <Layout>
-      <RenderBody home={doc.node} projects={projects} meta={meta} />
+      <RenderBody
+        home={doc.node}
+        projects={projects}
+        meta={meta}
+        technologies={technologies}
+      />
     </Layout>
   )
 }
@@ -232,6 +243,7 @@ export const query = graphql`
             about_links {
               about_link
             }
+            technologies
           }
         }
       }
@@ -246,6 +258,16 @@ export const query = graphql`
             _meta {
               uid
             }
+          }
+        }
+      }
+      allTechnologys(sortBy: category_ASC) {
+        edges {
+          node {
+            icon_class
+            icon_image
+            name
+            category
           }
         }
       }

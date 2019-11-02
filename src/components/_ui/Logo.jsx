@@ -20,7 +20,7 @@ const Logo = () => (
           height="100%"
           x="0"
           y="0"
-          stroke-width="0"
+          strokeWidth="0"
           fill="url(#gridpattern)"
         />
       </g>
@@ -29,15 +29,15 @@ const Logo = () => (
       <title>Layer 1</title>
       <text
         fill={colors.blue400}
-        stroke-width="0"
-        stroke-opacity="null"
+        strokeWidth="0"
+        strokeOpacity="null"
         x="-1286.373659"
         y="-141.370687"
         id="svg_3"
-        font-size="80"
-        font-family="Helvetica, Arial, sans-serif"
-        text-anchor="start"
-        font-style="normal"
+        fontSize="80"
+        fontFamily="Helvetica, Arial, sans-serif"
+        textAnchor="start"
+        fontStyle="normal"
         transform="matrix(0.28878005766666465,0,0,0.28878005766666465,401.9605420931437,66.17509248711036) "
         stroke="#000"
       >
@@ -45,16 +45,16 @@ const Logo = () => (
       </text>
       <text
         fill={colors.blue600}
-        stroke-width="0"
-        stroke-opacity="null"
+        strokeWidth="0"
+        strokeOpacity="null"
         x="-575.418962"
         y="-196.342926"
         id="svg_5"
-        font-size="80"
-        font-family="Helvetica, Arial, sans-serif"
-        text-anchor="start"
-        font-style="normal"
-        font-weight="bold"
+        fontSize="80"
+        fontFamily="Helvetica, Arial, sans-serif"
+        textAnchor="start"
+        fontStyle="normal"
+        fontWeight="bold"
         transform="matrix(0.298297805741264,0,0,0.298297805741264,273.4109715619258,83.74972298941745) "
         stroke="#000"
       >
