@@ -77,7 +77,7 @@ const AboutActions = styled("div")`
   }
 `
 
-const About = ({ bio, socialLinks }) => (
+const About = ({ bio, socialLinks, email }) => (
   <AboutContainer>
     <AboutLinkContainer>
       {socialLinks.map((social, i) => (
@@ -98,11 +98,7 @@ const About = ({ bio, socialLinks }) => (
     </AboutLinkContainer>
     <AboutBio>{RichText.render(bio)}</AboutBio>
     <AboutActions>
-      <a
-        href="mailto:amnrsln@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={email} target="_blank" rel="noopener noreferrer">
         <Button className="Button--secondary">Email me</Button>
       </a>
     </AboutActions>

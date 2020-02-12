@@ -191,7 +191,11 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
     </Section>
     <Section>
       {RichText.render(home.about_title)}
-      <About bio={home.about_bio} socialLinks={home.about_links} />
+      <About
+        bio={home.about_bio}
+        socialLinks={home.about_links}
+        email={home.hero_button_link.url}
+      />
     </Section>
   </>
 )
