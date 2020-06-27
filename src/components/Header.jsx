@@ -7,17 +7,20 @@ import Logo from "components/_ui/Logo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { useMediaQuery } from "react-responsive"
-
 const HeaderContainer = styled("div")`
   padding-top: 3.75em;
   padding-bottom: 1em;
   padding-left: ${dimensions.paddingHorizontalDesktop}em;
   padding-right: ${dimensions.paddingHorizontalDesktop}em;
   position: sticky;
+
   top: 0;
   background-color: #fff;
   z-index: 30;
 
+  box-shadow: ${props =>
+    props.isScrolling ? "0px 0px 24px rgba(0, 0, 0, 0.06)" : "none"};
+  transition: box-shadow 1s;
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-left: ${dimensions.paddingHorizontalTablet}em;
     padding-right: ${dimensions.paddingHorizontalTablet}em;
@@ -115,14 +118,19 @@ const MenuIconContainer = styled.div`
 
 const MenuContainer = styled.div`
   display: flex;
+  visibility: ${props => (props.isMenuOpen ? "visible" : "hidden")};
   flex-direction: column;
   position: fixed;
-  top: 4.5rem;
-  right: 0;
+  top: "4.5rem";
+  right: ${props => (props.isMenuOpen ? "0" : "-100px")};
   background-color: #fff;
   padding: 0.5rem 2rem;
   justify-content: center;
   align-items: center;
+  box-shadow: ${props =>
+    props.isScrolling ? "0px 0px 24px rgba(0, 0, 0, 0.06)" : "none"};
+  transition: right 1s, visibility 1s, box-shadow 1s;
+  z-index: 10;
 `
 
 const MobileView = styled.div`
@@ -163,16 +171,29 @@ const Links = () => (
 
 const Header = () => {
   const [isMenuOpen, setOpenMenu] = React.useState(false)
+  const [isScrolling, setIsScrolling] = React.useState(false)
   const isTabletOrMobile = useMediaQuery({
     query: `(max-device-width: ${dimensions.maxwidthTablet}px)`,
   })
+
+  React.useEffect(() => {
+    window.onscroll = function() {
+      if (window.pageYOffset === 0) {
+        setIsScrolling(false)
+      } else {
+        setIsScrolling(true)
+      }
+    }
+  }, [])
 
   const openMenu = () => {
     setOpenMenu(!isMenuOpen)
   }
 
+  console.log(isMenuOpen)
+
   return (
-    <HeaderContainer>
+    <HeaderContainer isScrolling={isScrolling}>
       <HeaderContent>
         <Link to="/">
           <Logo />
@@ -181,11 +202,9 @@ const Header = () => {
           <MenuIconContainer onClick={openMenu}>
             <FontAwesomeIcon icon={faBars} color={"#81A1C1"} />
           </MenuIconContainer>
-          {isMenuOpen ? (
-            <MenuContainer>
-              <Links />
-            </MenuContainer>
-          ) : null}
+          <MenuContainer isMenuOpen={isMenuOpen}>
+            <Links />
+          </MenuContainer>
         </MobileView>
         <DesktopView>
           <Links />

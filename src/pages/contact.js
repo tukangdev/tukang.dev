@@ -75,8 +75,14 @@ const RenderBody = ({ contact, meta }) => (
       ].concat(meta)}
     />
     <Section>
-      <Title>{RichText.asText(contact.title)}</Title>
-      <Subtitle>{RichText.asText(contact.subtitle)}</Subtitle>
+      <div
+        style={{
+          margin: "5rem 0",
+        }}
+      >
+        <Title>{RichText.asText(contact.title)}</Title>
+        <Subtitle>{RichText.asText(contact.subtitle)}</Subtitle>
+      </div>
       <Contact />
     </Section>
   </>
