@@ -111,7 +111,6 @@ const ContactBoxHeader = styled.p`
 const ContactForm = () => {
   return (
     <ContactBox>
-      <ContactBoxHeader>Let's get in touch</ContactBoxHeader>
       <FormContainer
         action="https://getform.io/f/dea5aab3-4e5f-413f-8aad-9c217a10bea4"
         method="POST"

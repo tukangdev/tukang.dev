@@ -119,6 +119,19 @@ const WorkAction = styled(Link)`
   }
 `
 
+const Title = styled.h1`
+  text-align: center;
+  margin: 0;
+`
+
+const Subtitle = styled.span`
+  text-align: center;
+  color: #5e81ac;
+  font-weight: 300;
+  margin-bottom: 5rem;
+  font-size: 1.25rem;
+`
+
 const RenderBody = ({ home, projects, meta, technologies }) => (
   <>
     <Helmet
@@ -172,6 +185,8 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       )}
     </Hero>
     <Section>
+      <Title>{RichText.asText(home.projects)}</Title>
+      <Subtitle>{RichText.asText(home.projects_sub)}</Subtitle>
       {projects.map((project, i) => (
         <ProjectCard
           key={i}
@@ -187,11 +202,13 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       </WorkAction>
     </Section>
     <Section>
-      {RichText.render(home.technologies)}
+      <Title>{RichText.asText(home.technologies)}</Title>
+      <Subtitle>{RichText.asText(home.technologies_sub)}</Subtitle>
       <Technologies technologies={technologies} />
     </Section>
     <Section>
-      {RichText.render(home.contact)}
+      <Title>{RichText.asText(home.contact)}</Title>
+      <Subtitle>{RichText.asText(home.contact_sub)}</Subtitle>
       <ContactForm />
     </Section>
     {/* <Section>
@@ -253,7 +270,11 @@ export const query = graphql`
               about_link
             }
             technologies
+            technologies_sub
             contact
+            contact_sub
+            projects
+            projects_sub
           }
         }
       }
