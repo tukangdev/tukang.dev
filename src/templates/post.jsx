@@ -5,6 +5,11 @@ import Moment from "react-moment"
 import { graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import styled from "@emotion/styled"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+} from "@fortawesome/free-brands-svg-icons"
 import colors from "styles/colors"
 import Layout from "components/Layout"
 
@@ -64,7 +69,8 @@ const PostFooter = styled("div")`
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `
 
 const PostBody = styled("div")`
@@ -169,14 +175,20 @@ const Post = ({ post, meta }) => {
         <PostBody>{RichText.render(post.post_body)}</PostBody>
         <br />
         <PostFooter>
-          <span>Share this post: </span>
+          <span>
+            <b>Share this post: </b>
+          </span>
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
               `https://tukang.dev/blog/${post._meta.uid}`
             )}`}
             style={{ margin: "0 1rem" }}
           >
-            Facebook
+            <FontAwesomeIcon
+              icon={faFacebookSquare}
+              size="2x"
+              color="#4b84e5"
+            />
           </a>
           <a
             href={`https://twitter.com/share?url=${encodeURIComponent(
@@ -184,7 +196,7 @@ const Post = ({ post, meta }) => {
             )}`}
             style={{ margin: "0 1rem" }}
           >
-            Twitter
+            <FontAwesomeIcon icon={faTwitterSquare} size="2x" color="#4b84e5" />
           </a>
         </PostFooter>
       </Layout>
