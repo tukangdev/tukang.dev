@@ -5,6 +5,7 @@ module.exports = {
     author: `Amin Roslan | aminroslan.com`,
   },
   plugins: [
+    `gatsby-plugin-fontawesome-css`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
