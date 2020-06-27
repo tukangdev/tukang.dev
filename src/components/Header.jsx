@@ -116,6 +116,22 @@ const MenuContainer = styled.div`
   align-items: center;
 `
 
+const MobileView = styled.div`
+  display: none;
+
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    display: block;
+  }
+`
+
+const DesktopView = styled.div`
+  display: block;
+
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    display: none;
+  }
+`
+
 const Header = () => {
   const [isMenuOpen, setOpenMenu] = React.useState(false)
   const isTabletOrMobile = useMediaQuery({
@@ -132,34 +148,33 @@ const Header = () => {
         <Link to="/">
           <Logo />
         </Link>
-        {isTabletOrMobile ? (
-          <>
-            <MenuIconContainer onClick={openMenu}>
-              <FontAwesomeIcon icon={faBars} color={"#81A1C1"} />
-            </MenuIconContainer>
-            {isMenuOpen ? (
-              <MenuContainer>
-                <HeaderLinks>
-                  <Link activeClassName="Link--is-active" to="/work">
-                    Home
-                  </Link>
-                  <Link activeClassName="Link--is-active" to="/work">
-                    About
-                  </Link>
-                  <Link activeClassName="Link--is-active" to="/work">
-                    Work
-                  </Link>
-                  <Link activeClassName="Link--is-active" to="/blog">
-                    Blog
-                  </Link>
-                  <Link activeClassName="Link--is-active" to="/work">
-                    Contact
-                  </Link>
-                </HeaderLinks>
-              </MenuContainer>
-            ) : null}
-          </>
-        ) : (
+        <MobileView>
+          <MenuIconContainer onClick={openMenu}>
+            <FontAwesomeIcon icon={faBars} color={"#81A1C1"} />
+          </MenuIconContainer>
+          {isMenuOpen ? (
+            <MenuContainer>
+              <HeaderLinks>
+                <Link activeClassName="Link--is-active" to="/work">
+                  Home
+                </Link>
+                <Link activeClassName="Link--is-active" to="/work">
+                  About
+                </Link>
+                <Link activeClassName="Link--is-active" to="/work">
+                  Work
+                </Link>
+                <Link activeClassName="Link--is-active" to="/blog">
+                  Blog
+                </Link>
+                <Link activeClassName="Link--is-active" to="/work">
+                  Contact
+                </Link>
+              </HeaderLinks>
+            </MenuContainer>
+          ) : null}
+        </MobileView>
+        <DesktopView>
           <HeaderLinks>
             <Link activeClassName="Link--is-active" to="/work">
               Home
@@ -177,7 +192,7 @@ const Header = () => {
               Contact
             </Link>
           </HeaderLinks>
-        )}
+        </DesktopView>
       </HeaderContent>
     </HeaderContainer>
   )
