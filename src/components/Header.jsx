@@ -51,6 +51,15 @@ const HeaderLinks = styled("div")`
     grid-gap: 5.5em;
     display: flex;
     flex-direction: column;
+
+    a {
+      padding-bottom: 0.75em !important;
+      &:after {
+        left: 0 !important;
+        width: 100% !important;
+        bottom: 0 !important;
+      }
+    }
   }
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {

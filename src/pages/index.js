@@ -175,13 +175,9 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
     <Hero>
       <>{RichText.render(home.hero_title)}</>
       {home.hero_button_link && (
-        <a
-          href={home.hero_button_link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link to="/contact">
           <Button>{RichText.render(home.hero_button_text)}</Button>
-        </a>
+        </Link>
       )}
     </Hero>
     <Section>
