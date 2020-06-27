@@ -11,6 +11,7 @@ import About from "components/About"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
 import Technologies from "../components/Technologies"
+import ContactForm from "../components/Contact"
 
 const Hero = styled("div")`
   padding-top: 2.5em;
@@ -118,6 +119,19 @@ const WorkAction = styled(Link)`
   }
 `
 
+const Title = styled.h1`
+  text-align: center;
+  margin: 0;
+`
+
+const Subtitle = styled.span`
+  text-align: center;
+  color: #5e81ac;
+  font-weight: 300;
+  margin-bottom: 5rem;
+  font-size: 1.25rem;
+`
+
 const RenderBody = ({ home, projects, meta, technologies }) => (
   <>
     <Helmet
@@ -161,16 +175,14 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
     <Hero>
       <>{RichText.render(home.hero_title)}</>
       {home.hero_button_link && (
-        <a
-          href={home.hero_button_link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link to="/contact">
           <Button>{RichText.render(home.hero_button_text)}</Button>
-        </a>
+        </Link>
       )}
     </Hero>
     <Section>
+      <Title>{RichText.asText(home.projects)}</Title>
+      <Subtitle>{RichText.asText(home.projects_sub)}</Subtitle>
       {projects.map((project, i) => (
         <ProjectCard
           key={i}
@@ -186,17 +198,23 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       </WorkAction>
     </Section>
     <Section>
-      {RichText.render(home.technologies)}
+      <Title>{RichText.asText(home.technologies)}</Title>
+      <Subtitle>{RichText.asText(home.technologies_sub)}</Subtitle>
       <Technologies technologies={technologies} />
     </Section>
     <Section>
+      <Title>{RichText.asText(home.contact)}</Title>
+      <Subtitle>{RichText.asText(home.contact_sub)}</Subtitle>
+      <ContactForm />
+    </Section>
+    {/* <Section>
       {RichText.render(home.about_title)}
       <About
         bio={home.about_bio}
         socialLinks={home.about_links}
         email={home.hero_button_link.url}
       />
-    </Section>
+    </Section> */}
   </>
 )
 
@@ -242,16 +260,16 @@ export const query = graphql`
               }
             }
             content
-            about_title
-            about_bio
-            about_links {
-              about_link
-            }
             technologies
+            technologies_sub
+            contact
+            contact_sub
+            projects
+            projects_sub
           }
         }
       }
-      allProjects {
+      allProjects(sortBy: meta_firstPublicationDate_DESC) {
         edges {
           node {
             project_title

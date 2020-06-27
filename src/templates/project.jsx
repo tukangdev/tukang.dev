@@ -7,6 +7,11 @@ import { Link, graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import Button from "components/_ui/Button"
 import Layout from "components/Layout"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+} from "@fortawesome/free-brands-svg-icons"
 
 const ProjectHeroContainer = styled("div")`
   background: ${colors.grey200};
@@ -34,7 +39,8 @@ const ProjectFooter = styled("div")`
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `
 
 const ProjectBody = styled("div")`
@@ -117,14 +123,20 @@ const Project = ({ project, meta }) => {
           {RichText.render(project.project_description)}
           <br />
           <ProjectFooter>
-            <span>Share this post: </span>
+            <span>
+              <b>Share this post: </b>
+            </span>
             <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
                 `https://tukang.dev/work/${project._meta.uid}`
               )}`}
               style={{ margin: "0 1rem" }}
             >
-              Facebook
+              <FontAwesomeIcon
+                icon={faFacebookSquare}
+                size="2x"
+                color="#4b84e5"
+              />
             </a>
             <a
               href={`https://twitter.com/share?url=${encodeURIComponent(
@@ -132,7 +144,11 @@ const Project = ({ project, meta }) => {
               )}`}
               style={{ margin: "0 1rem" }}
             >
-              Twitter
+              <FontAwesomeIcon
+                icon={faTwitterSquare}
+                size="2x"
+                color="#4b84e5"
+              />
             </a>
           </ProjectFooter>
           <WorkLink to={"/work"}>
