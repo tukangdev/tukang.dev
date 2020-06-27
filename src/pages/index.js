@@ -11,6 +11,7 @@ import About from "components/About"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
 import Technologies from "../components/Technologies"
+import ContactForm from "../components/Contact"
 
 const Hero = styled("div")`
   padding-top: 2.5em;
@@ -190,6 +191,10 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       <Technologies technologies={technologies} />
     </Section>
     <Section>
+      {RichText.render(home.contact)}
+      <ContactForm />
+    </Section>
+    <Section>
       {RichText.render(home.about_title)}
       <About
         bio={home.about_bio}
@@ -248,6 +253,7 @@ export const query = graphql`
               about_link
             }
             technologies
+            contact
           }
         }
       }
