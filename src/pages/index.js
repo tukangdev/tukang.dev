@@ -264,11 +264,6 @@ export const query = graphql`
               }
             }
             content
-            about_title
-            about_bio
-            about_links {
-              about_link
-            }
             technologies
             technologies_sub
             contact

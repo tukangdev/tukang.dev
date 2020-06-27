@@ -132,6 +132,26 @@ const DesktopView = styled.div`
   }
 `
 
+const Links = () => (
+  <HeaderLinks>
+    <Link activeClassName="Link--is-active" to="/">
+      Home
+    </Link>
+    <Link activeClassName="Link--is-active" to="/about">
+      About
+    </Link>
+    <Link activeClassName="Link--is-active" to="/work">
+      Work
+    </Link>
+    <Link activeClassName="Link--is-active" to="/blog">
+      Blog
+    </Link>
+    <Link activeClassName="Link--is-active" to="/contact">
+      Contact
+    </Link>
+  </HeaderLinks>
+)
+
 const Header = () => {
   const [isMenuOpen, setOpenMenu] = React.useState(false)
   const isTabletOrMobile = useMediaQuery({
@@ -154,44 +174,12 @@ const Header = () => {
           </MenuIconContainer>
           {isMenuOpen ? (
             <MenuContainer>
-              <HeaderLinks>
-                <Link activeClassName="Link--is-active" to="/work">
-                  Home
-                </Link>
-                <Link activeClassName="Link--is-active" to="/work">
-                  About
-                </Link>
-                <Link activeClassName="Link--is-active" to="/work">
-                  Work
-                </Link>
-                <Link activeClassName="Link--is-active" to="/blog">
-                  Blog
-                </Link>
-                <Link activeClassName="Link--is-active" to="/work">
-                  Contact
-                </Link>
-              </HeaderLinks>
+              <Links />
             </MenuContainer>
           ) : null}
         </MobileView>
         <DesktopView>
-          <HeaderLinks>
-            <Link activeClassName="Link--is-active" to="/work">
-              Home
-            </Link>
-            <Link activeClassName="Link--is-active" to="/work">
-              About
-            </Link>
-            <Link activeClassName="Link--is-active" to="/work">
-              Work
-            </Link>
-            <Link activeClassName="Link--is-active" to="/blog">
-              Blog
-            </Link>
-            <Link activeClassName="Link--is-active" to="/work">
-              Contact
-            </Link>
-          </HeaderLinks>
+          <Links />
         </DesktopView>
       </HeaderContent>
     </HeaderContainer>
