@@ -4,10 +4,11 @@ import { RichText } from "prismic-reactjs"
 import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import colors from "styles/colors"
+import Image from "gatsby-image"
 
 const ServiceCardContainer = styled(Link)`
   display: grid;
-  //   grid-template-columns: 4fr 7fr;
+  grid-template-columns: 4fr 7fr;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.06);
   margin-bottom: 4em;
   transition: all 150ms ease-in-out;
@@ -55,7 +56,7 @@ const ServiceCardContainer = styled(Link)`
 
 const ServiceCardContent = styled("div")`
   background: white;
-  padding: 4em 3em 2.25em 3em;
+  padding: 2em 3em 2em 3em;
   position: relative;
 
   &:before {
@@ -93,7 +94,7 @@ const ServiceCardTitle = styled("h3")`
 const ServiceCardBlurb = styled("div")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
-  margin-bottom: 5em;
+  margin-bottom: 0.5em;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     margin-bottom: 2.5em;
@@ -115,10 +116,9 @@ const ServiceCardAction = styled("div")`
 `
 
 const ServiceCardImageContainer = styled("div")`
-  background: ${colors.grey200};
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   position: relative;
   // padding-left: 2em;
@@ -156,8 +156,11 @@ const ServiceCardImageContainer = styled("div")`
   }
 `
 
-const ServiceCard = ({ title, description }) => (
+const ServiceCard = ({ title, description, imageFixed }) => (
   <ServiceCardContainer to={`/`}>
+    <ServiceCardImageContainer>
+      <Image fixed={imageFixed} />
+    </ServiceCardImageContainer>
     <ServiceCardContent className="ServiceCardContent">
       <ServiceCardTitle>{title[0].text}</ServiceCardTitle>
       <ServiceCardBlurb>{RichText.render(description)}</ServiceCardBlurb>
