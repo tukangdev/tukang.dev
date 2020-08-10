@@ -6,6 +6,7 @@ import { RichText } from "prismic-reactjs"
 import { graphql } from "gatsby"
 import Layout from "components/Layout"
 import Contact from "components/Contact"
+import LogoV2 from "../images/logov2.png"
 
 const Title = styled.h1`
   text-align: center;
@@ -47,6 +48,14 @@ const RenderBody = ({ contact, meta }) => (
         {
           property: `og:title`,
           content: `Contact | ${meta.title}`,
+        },
+        {
+          property: `og:image`,
+          content: LogoV2,
+        },
+        {
+          name: `twitter:image`,
+          content: LogoV2,
         },
         {
           property: `og:description`,

@@ -8,6 +8,7 @@ import { RichText } from "prismic-reactjs"
 import colors from "styles/colors"
 import Image from "gatsby-image"
 import Contact from "components/Contact"
+import LogoV2 from "../images/logov2.png"
 
 const ServicePageTitle = styled("h1")`
   margin-bottom: 2em;
@@ -150,6 +151,14 @@ const Services = ({ services, meta, home }) => (
         {
           property: `og:description`,
           content: meta.description,
+        },
+        {
+          property: `og:image`,
+          content: LogoV2,
+        },
+        {
+          name: `twitter:image`,
+          content: LogoV2,
         },
         {
           property: `og:type`,

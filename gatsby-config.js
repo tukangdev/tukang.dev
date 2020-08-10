@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Tukang Dev`,
-    description: `Building software solutions`,
+    description: `Tukang.dev is home to a group of freelancers that are specialised in their own respective field. We offer solutions to problems. We help businesses by delivering quality products & services until the end. From small gaps to a huge footprints, we help by patching those gaps up`,
     author: `Amin Roslan | aminroslan.com`,
   },
   plugins: [

@@ -6,6 +6,7 @@ import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import Layout from "components/Layout"
 import PostCard from "components/PostCard"
+import LogoV2 from "../images/logov2.png"
 
 const BlogTitle = styled("h1")`
   margin-bottom: 1em;
@@ -44,6 +45,14 @@ const Blog = ({ posts, meta }) => (
         {
           property: `og:description`,
           content: meta.description,
+        },
+        {
+          property: `og:image`,
+          content: LogoV2,
+        },
+        {
+          name: `twitter:image`,
+          content: LogoV2,
         },
         {
           property: `og:type`,
