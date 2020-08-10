@@ -186,7 +186,7 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
         <ServiceCard
           key={i}
           title={service.node.service_name}
-          description={service.node.service_description}
+          description={service.node.service_short_description}
           imageFixed={service.node.service_imageSharp.childImageSharp.fixed}
         />
       ))}
@@ -300,12 +300,12 @@ export const query = graphql`
       allServices(first: 3) {
         edges {
           node {
-            service_description
+            service_short_description
             service_name
             service_image
             service_imageSharp {
               childImageSharp {
-                fixed(height: 150, width: 150) {
+                fixed(height: 100, width: 100) {
                   ...GatsbyImageSharpFixed_withWebp
                 }
               }
