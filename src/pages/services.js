@@ -145,7 +145,7 @@ const Services = ({ services, meta, home }) => (
         },
         {
           property: `og:title`,
-          content: `Services`,
+          content: `Services | ${meta.title}`,
         },
         {
           property: `og:description`,
