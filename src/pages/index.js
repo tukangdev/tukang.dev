@@ -187,8 +187,12 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
           key={i}
           title={service.node.service_name}
           description={service.node.service_description}
+          imageFixed={service.node.service_imageSharp.childImageSharp.fixed}
         />
       ))}
+      <WorkAction to={"/services"}>
+        See more services <span>&#8594;</span>
+      </WorkAction>
     </Section>
     <Section>
       <Title>{RichText.asText(home.projects)}</Title>
@@ -299,6 +303,13 @@ export const query = graphql`
             service_description
             service_name
             service_image
+            service_imageSharp {
+              childImageSharp {
+                fixed(height: 150, width: 150) {
+                  ...GatsbyImageSharpFixed_withWebp
+                }
+              }
+            }
           }
         }
       }
