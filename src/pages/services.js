@@ -10,7 +10,7 @@ import Image from "gatsby-image"
 import Contact from "components/Contact"
 
 const ServicePageTitle = styled("h1")`
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 `
 
 const Title = styled.h1`

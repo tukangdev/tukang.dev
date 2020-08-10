@@ -193,8 +193,6 @@ const Header = () => {
     setOpenMenu(!isMenuOpen)
   }
 
-  console.log(isMenuOpen)
-
   return (
     <HeaderContainer isScrolling={isScrolling}>
       <HeaderContent>
