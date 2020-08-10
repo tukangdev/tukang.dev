@@ -207,14 +207,6 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       <Subtitle>{RichText.asText(home.contact_sub)}</Subtitle>
       <ContactForm />
     </Section>
-    {/* <Section>
-      {RichText.render(home.about_title)}
-      <About
-        bio={home.about_bio}
-        socialLinks={home.about_links}
-        email={home.hero_button_link.url}
-      />
-    </Section> */}
   </>
 )
 
