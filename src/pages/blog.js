@@ -39,7 +39,7 @@ const Blog = ({ posts, meta }) => (
         },
         {
           property: `og:title`,
-          content: `Blog | Prist, Gatsby & Prismic Starter`,
+          content: `Blog | ${meta.title}`,
         },
         {
           property: `og:description`,

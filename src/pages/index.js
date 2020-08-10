@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { RichText } from "prismic-reactjs"
 import { graphql, Link } from "gatsby"
@@ -7,11 +6,11 @@ import styled from "@emotion/styled"
 import colors from "styles/colors"
 import dimensions from "styles/dimensions"
 import Button from "components/_ui/Button"
-import About from "components/About"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
 import Technologies from "../components/Technologies"
 import ContactForm from "../components/Contact"
+import ServiceCard from "components/ServiceCard"
 
 const Hero = styled("div")`
   padding-top: 2.5em;
@@ -132,7 +131,7 @@ const Subtitle = styled.span`
   font-size: 1.25rem;
 `
 
-const RenderBody = ({ home, projects, meta, technologies }) => (
+const RenderBody = ({ home, projects, meta, technologies, services }) => (
   <>
     <Helmet
       title={meta.title}
@@ -181,6 +180,21 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       )}
     </Hero>
     <Section>
+      <Title>{RichText.asText(home.services)}</Title>
+      <Subtitle>{RichText.asText(home.services_sub)}</Subtitle>
+      {services.map((service, i) => (
+        <ServiceCard
+          key={i}
+          title={service.node.service_name}
+          description={service.node.service_short_description}
+          imageFixed={service.node.service_imageSharp.childImageSharp.fixed}
+        />
+      ))}
+      <WorkAction to={"/services"}>
+        See more services <span>&#8594;</span>
+      </WorkAction>
+    </Section>
+    <Section>
       <Title>{RichText.asText(home.projects)}</Title>
       <Subtitle>{RichText.asText(home.projects_sub)}</Subtitle>
       {projects.map((project, i) => (
@@ -207,14 +221,6 @@ const RenderBody = ({ home, projects, meta, technologies }) => (
       <Subtitle>{RichText.asText(home.contact_sub)}</Subtitle>
       <ContactForm />
     </Section>
-    {/* <Section>
-      {RichText.render(home.about_title)}
-      <About
-        bio={home.about_bio}
-        socialLinks={home.about_links}
-        email={home.hero_button_link.url}
-      />
-    </Section> */}
   </>
 )
 
@@ -224,6 +230,7 @@ export default ({ data }) => {
   const projects = data.prismic.allProjects.edges
   const meta = data.site.siteMetadata
   const technologies = data.prismic.allTechnologys.edges
+  const services = data.prismic.allServices.edges
 
   if (!doc || !projects) return null
 
@@ -234,15 +241,10 @@ export default ({ data }) => {
         projects={projects}
         meta={meta}
         technologies={technologies}
+        services={services}
       />
     </Layout>
   )
-}
-
-RenderBody.propTypes = {
-  home: PropTypes.object.isRequired,
-  projects: PropTypes.array.isRequired,
-  meta: PropTypes.object.isRequired,
 }
 
 export const query = graphql`
@@ -262,6 +264,8 @@ export const query = graphql`
             content
             technologies
             technologies_sub
+            services
+            services_sub
             contact
             contact_sub
             projects
@@ -290,6 +294,22 @@ export const query = graphql`
             icon_image
             name
             category
+          }
+        }
+      }
+      allServices(first: 3) {
+        edges {
+          node {
+            service_short_description
+            service_name
+            service_image
+            service_imageSharp {
+              childImageSharp {
+                fixed(height: 100, width: 100) {
+                  ...GatsbyImageSharpFixed_withWebp
+                }
+              }
+            }
           }
         }
       }

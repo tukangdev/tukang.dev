@@ -46,7 +46,7 @@ const FooterAuthor = styled("a")`
   }
 `
 
-const FooterSpooch = styled("div")`
+const FooterSpooch = styled("span")`
   font-size: 2rem;
   max-width: 33px;
   margin-top: 0.25em;
@@ -58,8 +58,18 @@ const Footer = () => (
       <Logo />
     </Link>
     <FooterAuthor href="https://aminroslan.com">
-      © 2019 — Designed & developed by Amin Roslan
-      <FooterSpooch className="FooterSpooch">💩</FooterSpooch>
+      © 2020 — Designed & developed by Amin Roslan
+      <FooterSpooch
+        role="img"
+        aria-label="poo"
+        aria-labelledby="poo"
+        className="FooterSpooch"
+      >
+        🚀
+      </FooterSpooch>
+    </FooterAuthor>
+    <FooterAuthor href="https://thenounproject.com">
+      Icons are from thenounproject
     </FooterAuthor>
   </FooterContainer>
 )

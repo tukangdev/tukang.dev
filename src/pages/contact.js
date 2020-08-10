@@ -46,7 +46,7 @@ const RenderBody = ({ contact, meta }) => (
         },
         {
           property: `og:title`,
-          content: meta.title,
+          content: `Contact | ${meta.title}`,
         },
         {
           property: `og:description`,

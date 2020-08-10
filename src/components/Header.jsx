@@ -44,7 +44,7 @@ const HeaderContent = styled("div")`
 
 const HeaderLinks = styled("div")`
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(6, auto);
   grid-gap: 5em;
   justify-content: flex-end;
   width: 100%;
@@ -157,6 +157,9 @@ const Links = () => (
     <Link activeClassName="Link--is-active" to="/about">
       About
     </Link>
+    <Link activeClassName="Link--is-active" to="/services">
+      Services
+    </Link>
     <Link activeClassName="Link--is-active" to="/work">
       Work
     </Link>
@@ -189,8 +192,6 @@ const Header = () => {
   const openMenu = () => {
     setOpenMenu(!isMenuOpen)
   }
-
-  console.log(isMenuOpen)
 
   return (
     <HeaderContainer isScrolling={isScrolling}>
