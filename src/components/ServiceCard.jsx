@@ -125,7 +125,7 @@ const ServiceCardImageContainer = styled("div")`
   // padding-right: 2em;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
-    // padding-top: 3em;
+    padding-top: 3em;
     max-height: 200px;
     flex-direction: column;
     align-items: center;
