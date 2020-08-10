@@ -5,6 +5,7 @@ import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
+import LogoV2 from "../images/logov2.png"
 
 const WorkTitle = styled("h1")`
   margin-bottom: 1em;
@@ -23,6 +24,14 @@ const Work = ({ projects, meta }) => (
         {
           property: `og:title`,
           content: `Work | ${meta.title}`,
+        },
+        {
+          property: `og:image`,
+          content: LogoV2,
+        },
+        {
+          name: `twitter:image`,
+          content: LogoV2,
         },
         {
           property: `og:description`,

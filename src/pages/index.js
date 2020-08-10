@@ -11,6 +11,7 @@ import ProjectCard from "components/ProjectCard"
 import Technologies from "../components/Technologies"
 import ContactForm from "../components/Contact"
 import ServiceCard from "components/ServiceCard"
+import LogoV2 from "../images/logov2.png"
 
 const Hero = styled("div")`
   padding-top: 2.5em;
@@ -154,6 +155,10 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: LogoV2,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },
@@ -168,6 +173,10 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
         {
           name: `twitter:description`,
           content: meta.description,
+        },
+        {
+          name: `twitter:image`,
+          content: LogoV2,
         },
       ].concat(meta)}
     />

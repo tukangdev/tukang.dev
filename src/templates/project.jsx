@@ -72,7 +72,7 @@ const Project = ({ project, meta }) => {
         meta={[
           {
             name: `description`,
-            content: meta.description,
+            content: project.project_preview_description,
           },
           {
             property: `og:title`,
@@ -80,7 +80,7 @@ const Project = ({ project, meta }) => {
           },
           {
             property: `og:description`,
-            content: meta.description,
+            content: project.project_preview_description,
           },
           {
             property: `og:image`,
@@ -108,7 +108,7 @@ const Project = ({ project, meta }) => {
           },
           {
             name: `twitter:description`,
-            content: meta.description,
+            content: project.project_preview_description,
           },
         ].concat(meta)}
       />

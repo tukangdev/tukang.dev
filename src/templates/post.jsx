@@ -115,7 +115,7 @@ const Post = ({ post, meta }) => {
         meta={[
           {
             name: `description`,
-            content: meta.description,
+            content: post.post_preview_description,
           },
           {
             property: `og:title`,
@@ -123,7 +123,7 @@ const Post = ({ post, meta }) => {
           },
           {
             property: `og:description`,
-            content: meta.description,
+            content: post.post_preview_description,
           },
           {
             property: `og:image`,
@@ -151,7 +151,7 @@ const Post = ({ post, meta }) => {
           },
           {
             name: `twitter:description`,
-            content: meta.description,
+            content: post.post_preview_description,
           },
         ].concat(meta)}
       />
