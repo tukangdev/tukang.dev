@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery,graphql } from "gatsby"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
 import dimensions from "styles/dimensions"
@@ -7,6 +7,8 @@ import Logo from "components/_ui/Logo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { useMediaQuery } from "react-responsive"
+import Image from 'gatsby-image'
+
 const HeaderContainer = styled("div")`
   padding-top: 3.75em;
   padding-bottom: 1em;
@@ -173,6 +175,19 @@ const Links = () => (
 )
 
 const Header = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      fileName: file(relativePath: { eq: "logov2.png" }) {
+        childImageSharp {
+          fixed(height: 60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+
+  console.log(data)
   const [isMenuOpen, setOpenMenu] = React.useState(false)
   const [isScrolling, setIsScrolling] = React.useState(false)
   const isTabletOrMobile = useMediaQuery({
@@ -197,7 +212,7 @@ const Header = () => {
     <HeaderContainer isScrolling={isScrolling}>
       <HeaderContent>
         <Link to="/">
-          <Logo />
+          <Image style={{borderRadius: '50%'}} fixed={data.fileName.childImageSharp.fixed} />
         </Link>
         <MobileView>
           <MenuIconContainer onClick={openMenu}>
@@ -214,5 +229,17 @@ const Header = () => {
     </HeaderContainer>
   )
 }
+
+export const query = graphql`
+  query {
+    fileName: file(relativePath: { eq: "images/logov2.png" }) {
+      childImageSharp {
+        fixed(height: 100) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`
 
 export default Header
