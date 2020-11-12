@@ -176,7 +176,7 @@ const Links = () => (
 
 const Header = () => {
   const data = useStaticQuery(graphql`
-    query {
+    {
       fileName: file(relativePath: { eq: "logov2.png" }) {
         childImageSharp {
           fixed(height: 60) {
@@ -186,8 +186,6 @@ const Header = () => {
       }
     }
   `)
-
-  console.log(data)
   const [isMenuOpen, setOpenMenu] = React.useState(false)
   const [isScrolling, setIsScrolling] = React.useState(false)
   const isTabletOrMobile = useMediaQuery({
