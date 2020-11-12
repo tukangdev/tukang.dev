@@ -32,29 +32,16 @@ const LayoutContainer = styled.div`
 `
 
 const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <Header />
-        <LayoutContainer className="div">
-          <Global styles={[globalStyles, typeStyles]} />
-          <div className="Layout">
-            <main className="Layout__content">{children}</main>
-            <Footer />
-          </div>
-        </LayoutContainer>
-      </>
-    )}
-  />
+  <>
+    <Header />
+    <LayoutContainer className="div">
+      <Global styles={[globalStyles, typeStyles]} />
+      <div className="Layout">
+        <main className="Layout__content">{children}</main>
+        <Footer />
+      </div>
+    </LayoutContainer>
+  </>
 )
 
 Layout.propTypes = {

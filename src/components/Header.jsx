@@ -1,13 +1,12 @@
 import React from "react"
-import { Link, useStaticQuery,graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
 import dimensions from "styles/dimensions"
-import Logo from "components/_ui/Logo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { useMediaQuery } from "react-responsive"
-import Image from 'gatsby-image'
+import Image from "gatsby-image"
 
 const HeaderContainer = styled("div")`
   padding-top: 3.75em;
@@ -176,10 +175,10 @@ const Links = () => (
 
 const Header = () => {
   const data = useStaticQuery(graphql`
-    {
-      fileName: file(relativePath: { eq: "logov2.png" }) {
+    query {
+      file(relativePath: { eq: "logov2.png" }) {
         childImageSharp {
-          fixed(height: 60) {
+          fixed(height: 60, width: 60) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -210,7 +209,14 @@ const Header = () => {
     <HeaderContainer isScrolling={isScrolling}>
       <HeaderContent>
         <Link to="/">
-          <Image style={{borderRadius: '50%'}} fixed={data.fileName.childImageSharp.fixed} />
+          {data.file ? (
+            <Image
+              style={{ borderRadius: "50%" }}
+              fixed={data.file.childImageSharp.fixed}
+            />
+          ) : (
+            <h3>tukangdev</h3>
+          )}
         </Link>
         <MobileView>
           <MenuIconContainer onClick={openMenu}>
@@ -227,17 +233,5 @@ const Header = () => {
     </HeaderContainer>
   )
 }
-
-export const query = graphql`
-  query {
-    fileName: file(relativePath: { eq: "images/logov2.png" }) {
-      childImageSharp {
-        fixed(height: 100) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-  }
-`
 
 export default Header
