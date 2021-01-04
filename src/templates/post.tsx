@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import Moment from "react-moment"
 import { graphql } from "gatsby"
@@ -10,8 +9,8 @@ import {
   faFacebookSquare,
   faTwitterSquare,
 } from "@fortawesome/free-brands-svg-icons"
-import colors from "styles/colors"
-import Layout from "components/Layout"
+import colors from "../styles/colors"
+import Layout from "../components/Layout"
 
 const PostHeroContainer = styled("div")`
   max-height: 500px;
@@ -106,7 +105,7 @@ const PostDate = styled("div")`
   margin: 0;
 `
 
-const Post = ({ post, meta }) => {
+const Post = ({ post, meta }: { post: any; meta: any }) => {
   return (
     <>
       <Helmet
@@ -204,15 +203,10 @@ const Post = ({ post, meta }) => {
   )
 }
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   const postContent = data.prismic.allPosts.edges[0].node
   const meta = data.site.siteMetadata
   return <Post post={postContent} meta={meta} />
-}
-
-Post.propTypes = {
-  post: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
 }
 
 export const query = graphql`

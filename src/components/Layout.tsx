@@ -1,13 +1,11 @@
 import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
 import styled from "@emotion/styled"
 import { Global } from "@emotion/core"
-import globalStyles from "styles/global"
-import typeStyles from "styles/typography"
-import dimensions from "styles/dimensions"
-import Footer from "components/Footer"
-import Header from "components/Header"
+import globalStyles from "../styles/global"
+import typeStyles from "../styles/typography"
+import dimensions from "../styles/dimensions"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
 import "styles/fonts.scss"
 
 const LayoutContainer = styled.div`
@@ -31,21 +29,17 @@ const LayoutContainer = styled.div`
   }
 `
 
-const Layout = ({ children }) => (
+const Layout = (props: React.HTMLProps<HTMLDivElement>) => (
   <>
     <Header />
     <LayoutContainer className="div">
       <Global styles={[globalStyles, typeStyles]} />
       <div className="Layout">
-        <main className="Layout__content">{children}</main>
+        <main className="Layout__content">{props.children}</main>
         <Footer />
       </div>
     </LayoutContainer>
   </>
 )
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
 
 export default Layout

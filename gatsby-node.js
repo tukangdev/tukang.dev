@@ -1,3 +1,11 @@
+require("source-map-support").install()
+require("ts-node").register({
+  compilerOptions: {
+    module: "commonjs",
+    target: "es2017",
+  },
+})
+
 const path = require("path")
 
 // graphql function doesn't throw an error so we have to check to check for the result.errors to throw manually
@@ -9,8 +17,8 @@ const wrapper = promise =>
     return result
   })
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+exports.createPages = async ({ graphql, boundActionCreators }) => {
+  const { createPage } = boundActionCreators
 
   const result = await wrapper(
     graphql(`
@@ -55,8 +63,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const projectsList = result.data.prismic.allProjects.edges
   const postsList = result.data.prismic.allPosts.edges
 
-  const projectTemplate = require.resolve("./src/templates/project.jsx")
-  const postTemplate = require.resolve("./src/templates/post.jsx")
+  const projectTemplate = path.resolve("./src/templates/project.tsx")
+  const postTemplate = path.resolve("./src/templates/post.tsx")
 
   projectsList.forEach(edge => {
     // The uid you assigned in Prismic is the slug!

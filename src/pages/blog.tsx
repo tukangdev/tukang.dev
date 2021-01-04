@@ -1,11 +1,10 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
-import dimensions from "styles/dimensions"
-import Layout from "components/Layout"
-import PostCard from "components/PostCard"
+import dimensions from "../styles/dimensions"
+import Layout from "../components/Layout"
+import PostCard from "../components/PostCard"
 import LogoV2 from "../images/logov2.png"
 
 const BlogTitle = styled("h1")`
@@ -28,7 +27,7 @@ const BlogGrid = styled("div")`
   }
 `
 
-const Blog = ({ posts, meta }) => (
+const Blog = ({ posts, meta }: { posts: any; meta: any }) => (
   <>
     <Helmet
       title={meta.title}
@@ -79,7 +78,7 @@ const Blog = ({ posts, meta }) => (
     <Layout>
       <BlogTitle>Blog</BlogTitle>
       <BlogGrid>
-        {posts.map((post, i) => (
+        {posts.map((post: any, i: number) => (
           <PostCard
             key={i}
             author={post.node.post_author}
@@ -95,17 +94,12 @@ const Blog = ({ posts, meta }) => (
   </>
 )
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   const posts = data.prismic.allPosts.edges
   const meta = data.site.siteMetadata
   if (!posts) return null
 
   return <Blog posts={posts} meta={meta} />
-}
-
-Blog.propTypes = {
-  posts: PropTypes.array.isRequired,
-  meta: PropTypes.object.isRequired,
 }
 
 export const query = graphql`

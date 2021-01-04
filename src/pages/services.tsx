@@ -2,12 +2,12 @@ import React from "react"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
-import dimensions from "styles/dimensions"
-import Layout from "components/Layout"
+import dimensions from "../styles/dimensions"
+import Layout from "../components/Layout"
 import { RichText } from "prismic-reactjs"
-import colors from "styles/colors"
+import colors from "../styles/colors"
 import Image from "gatsby-image"
-import Contact from "components/Contact"
+import Contact from "../components/Contact"
 import LogoV2 from "../images/logov2.png"
 
 const ServicePageTitle = styled("h1")`
@@ -134,7 +134,15 @@ const ServiceCardImageContainer = styled("div")`
   }
 `
 
-const Services = ({ services, meta, home }) => (
+const Services = ({
+  services,
+  meta,
+  home,
+}: {
+  services: any
+  meta: any
+  home: any
+}) => (
   <>
     <Helmet
       title={meta.title}
@@ -184,7 +192,7 @@ const Services = ({ services, meta, home }) => (
     />
     <Layout>
       <ServicePageTitle>Service</ServicePageTitle>
-      {services.map((service, i) => (
+      {services.map((service: any) => (
         <ServiceCardContainer>
           <ServiceCardImageContainer>
             <Image
@@ -207,7 +215,7 @@ const Services = ({ services, meta, home }) => (
   </>
 )
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   const services = data.prismic.allServices.edges
   const home = data.prismic.allHomepages.edges.slice(0, 1).pop()
   const meta = data.site.siteMetadata

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-import Button from "components/_ui/Button"
+import Button from "../components/_ui/Button"
 
 const FormContainer = styled.form`
   display: flex;
@@ -120,7 +120,7 @@ const ContactForm = () => {
           <EmailInput type="email" name="email" placeholder="Email" />
         </EmailAndNameContainer>
 
-        <TextArea type="text" name="message" rows="5" placeholder="Message" />
+        <TextArea name="message" rows={5} placeholder="Message" />
         <Button style={{ margin: "1rem 0" }} type="submit">
           Send Message
         </Button>

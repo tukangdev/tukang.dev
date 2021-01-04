@@ -1,9 +1,8 @@
 import React from "react"
-import Button from "components/_ui/Button"
+import Button from "../components/_ui/Button"
 import styled from "@emotion/styled"
-import dimensions from "styles/dimensions"
-import { RichText } from "prismic-reactjs"
-import PropTypes from "prop-types"
+import dimensions from "../styles/dimensions"
+import { RichText, RichTextBlock } from "prismic-reactjs"
 
 const AboutContainer = styled("div")`
   padding-top: 1em;
@@ -77,7 +76,15 @@ const AboutActions = styled("div")`
   }
 `
 
-const About = ({ bio, socialLinks, email }) => (
+const About = ({
+  bio,
+  socialLinks,
+  email,
+}: {
+  bio: RichTextBlock[]
+  socialLinks: any[]
+  email: string
+}) => (
   <AboutContainer>
     <AboutLinkContainer>
       {socialLinks.map((social, i) => (
@@ -106,8 +113,3 @@ const About = ({ bio, socialLinks, email }) => (
 )
 
 export default About
-
-About.propTypes = {
-  bio: PropTypes.array.isRequired,
-  socialLinks: PropTypes.array.isRequired,
-}

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-import dimensions from "styles/dimensions"
+import dimensions from "../styles/dimensions"
 import { RichText } from "prismic-reactjs"
 import Carousel from "@brainhubeu/react-carousel"
 import "@brainhubeu/react-carousel/lib/style.css"
@@ -59,13 +59,14 @@ const TechnologyCategory = styled("span")`
   color: grey;
 `
 
-const Technologies = ({ technologies }) => {
+const Technologies = ({ technologies }: { technologies: any }) => {
   const isMobile = useMediaQuery({
     query: `(max-device-width: ${dimensions.maxwidthMobile}px)`,
   })
   return (
     <TechnologiesContainer>
       <Carousel
+        //@ts-ignore
         addArrowClickHandler
         autoPlay={"2000"}
         infinite
@@ -75,7 +76,7 @@ const Technologies = ({ technologies }) => {
         arrowRight={<FontAwesomeIcon icon={faChevronRight} size={"2x"} />}
         centered
       >
-        {technologies.map((technology, i) => {
+        {technologies.map((technology: any, i: number) => {
           return (
             <TechnologyContainer key={i}>
               {technology.node.icon_class && (

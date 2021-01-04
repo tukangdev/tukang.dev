@@ -1,12 +1,11 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import styled from "@emotion/styled"
-import colors from "styles/colors"
+import colors from "../styles/colors"
 import { Link, graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
-import Button from "components/_ui/Button"
-import Layout from "components/Layout"
+import Button from "../components/_ui/Button"
+import Layout from "../components/Layout"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faFacebookSquare,
@@ -63,7 +62,7 @@ const WorkLink = styled(Link)`
   text-align: center;
 `
 
-const Project = ({ project, meta }) => {
+const Project = ({ project, meta }: { project: any; meta: any }) => {
   return (
     <>
       <Helmet
@@ -160,14 +159,10 @@ const Project = ({ project, meta }) => {
   )
 }
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   const projectContent = data.prismic.allProjects.edges[0].node
   const meta = data.site.siteMetadata
   return <Project project={projectContent} meta={meta} />
-}
-
-Project.propTypes = {
-  project: PropTypes.object.isRequired,
 }
 
 export const query = graphql`

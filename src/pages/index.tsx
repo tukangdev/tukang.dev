@@ -3,14 +3,14 @@ import Helmet from "react-helmet"
 import { RichText } from "prismic-reactjs"
 import { graphql, Link } from "gatsby"
 import styled from "@emotion/styled"
-import colors from "styles/colors"
-import dimensions from "styles/dimensions"
-import Button from "components/_ui/Button"
-import Layout from "components/Layout"
-import ProjectCard from "components/ProjectCard"
+import colors from "../styles/colors"
+import dimensions from "../styles/dimensions"
+import Button from "../components/_ui/Button"
+import Layout from "../components/Layout"
+import ProjectCard from "../components/ProjectCard"
 import Technologies from "../components/Technologies"
 import ContactForm from "../components/Contact"
-import ServiceCard from "components/ServiceCard"
+import ServiceCard from "../components/ServiceCard"
 import LogoV2 from "../images/logov2.png"
 
 const Hero = styled("div")`
@@ -132,7 +132,19 @@ const Subtitle = styled.span`
   font-size: 1.25rem;
 `
 
-const RenderBody = ({ home, projects, meta, technologies, services }) => (
+const RenderBody = ({
+  home,
+  projects,
+  meta,
+  technologies,
+  services,
+}: {
+  home: any
+  projects: any
+  meta: any
+  technologies: any
+  services: any
+}) => (
   <>
     <Helmet
       title={meta.title}
@@ -191,7 +203,7 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
     <Section>
       <Title>{RichText.asText(home.services)}</Title>
       <Subtitle>{RichText.asText(home.services_sub)}</Subtitle>
-      {services.map((service, i) => (
+      {services.map((service: any, i: number) => (
         <ServiceCard
           key={i}
           title={service.node.service_name}
@@ -206,7 +218,7 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
     <Section>
       <Title>{RichText.asText(home.projects)}</Title>
       <Subtitle>{RichText.asText(home.projects_sub)}</Subtitle>
-      {projects.map((project, i) => (
+      {projects.map((project: any, i: number) => (
         <ProjectCard
           key={i}
           category={project.node.project_category}
@@ -233,7 +245,7 @@ const RenderBody = ({ home, projects, meta, technologies, services }) => (
   </>
 )
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   //Required check for no data being returned
   const doc = data.prismic.allHomepages.edges.slice(0, 1).pop()
   const projects = data.prismic.allProjects.edges

@@ -1,11 +1,11 @@
 import React from "react"
 import Helmet from "react-helmet"
 import styled from "@emotion/styled"
-import dimensions from "styles/dimensions"
+import dimensions from "../styles/dimensions"
 import { RichText } from "prismic-reactjs"
 import { graphql } from "gatsby"
-import Layout from "components/Layout"
-import Contact from "components/Contact"
+import Layout from "../components/Layout"
+import Contact from "../components/Contact"
 import LogoV2 from "../images/logov2.png"
 
 const Title = styled.h1`
@@ -35,11 +35,11 @@ const Section = styled("div")`
   }
 `
 
-const RenderBody = ({ about, meta, home }) => (
+const RenderBody = ({ contact, meta }: { contact: any; meta: any }) => (
   <>
     <Helmet
       title={meta.title}
-      titleTemplate={`%s | About | Building software solutions`}
+      titleTemplate={`%s | Contact | Building software solutions`}
       meta={[
         {
           name: `description`,
@@ -47,11 +47,7 @@ const RenderBody = ({ about, meta, home }) => (
         },
         {
           property: `og:title`,
-          content: `About | ${meta.title}`,
-        },
-        {
-          property: `og:description`,
-          content: meta.description,
+          content: `Contact | ${meta.title}`,
         },
         {
           property: `og:image`,
@@ -60,6 +56,10 @@ const RenderBody = ({ about, meta, home }) => (
         {
           name: `twitter:image`,
           content: LogoV2,
+        },
+        {
+          property: `og:description`,
+          content: meta.description,
         },
         {
           property: `og:type`,
@@ -84,29 +84,29 @@ const RenderBody = ({ about, meta, home }) => (
       ].concat(meta)}
     />
     <Section>
-      <Title>{RichText.asText(about.title)}</Title>
-      <Subtitle>{RichText.asText(about.subtitle)}</Subtitle>
-      {RichText.render(about.about_bio)}
-    </Section>
-    <Section>
-      <Title>{RichText.asText(home.contact)}</Title>
-      <Subtitle>{RichText.asText(home.contact_sub)}</Subtitle>
+      <div
+        style={{
+          margin: "5rem 0",
+        }}
+      >
+        <Title>{RichText.asText(contact.title)}</Title>
+        <Subtitle>{RichText.asText(contact.subtitle)}</Subtitle>
+      </div>
       <Contact />
     </Section>
   </>
 )
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   //Required check for no data being returned
-  const doc = data.prismic.allAbouts.edges.slice(0, 1).pop()
-  const home = data.prismic.allHomepages.edges.slice(0, 1).pop()
+  const doc = data.prismic.allContacts.edges.slice(0, 1).pop()
   const meta = data.site.siteMetadata
 
   if (!doc) return null
 
   return (
     <Layout>
-      <RenderBody about={doc.node} meta={meta} home={home.node} />
+      <RenderBody contact={doc.node} meta={meta} />
     </Layout>
   )
 }
@@ -114,20 +114,11 @@ export default ({ data }) => {
 export const query = graphql`
   {
     prismic {
-      allHomepages {
-        edges {
-          node {
-            contact
-            contact_sub
-          }
-        }
-      }
-      allAbouts {
+      allContacts {
         edges {
           node {
             title
             subtitle
-            about_bio
           }
         }
       }

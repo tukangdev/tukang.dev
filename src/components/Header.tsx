@@ -1,8 +1,8 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "@emotion/styled"
-import colors from "styles/colors"
-import dimensions from "styles/dimensions"
+import colors from "../styles/colors"
+import dimensions from "../styles/dimensions"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { useMediaQuery } from "react-responsive"
@@ -19,7 +19,7 @@ const HeaderContainer = styled("div")`
   background-color: #fff;
   z-index: 30;
 
-  box-shadow: ${props =>
+  box-shadow: ${(props: any) =>
     props.isScrolling ? "0px 0px 24px rgba(0, 0, 0, 0.06)" : "none"};
   transition: box-shadow 1s;
   @media (max-width: ${dimensions.maxwidthTablet}px) {
@@ -119,16 +119,16 @@ const MenuIconContainer = styled.div`
 
 const MenuContainer = styled.div`
   display: flex;
-  visibility: ${props => (props.isMenuOpen ? "visible" : "hidden")};
+  visibility: ${(props: any) => (props.isMenuOpen ? "visible" : "hidden")};
   flex-direction: column;
   position: fixed;
   top: "4.5rem";
-  right: ${props => (props.isMenuOpen ? "0" : "-100px")};
+  right: ${(props: any) => (props.isMenuOpen ? "0" : "-100px")};
   background-color: #fff;
   padding: 0.5rem 2rem;
   justify-content: center;
   align-items: center;
-  box-shadow: ${props =>
+  box-shadow: ${(props: any) =>
     props.isScrolling ? "0px 0px 24px rgba(0, 0, 0, 0.06)" : "none"};
   transition: right 1s, visibility 1s, box-shadow 1s;
   z-index: 10;

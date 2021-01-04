@@ -1,17 +1,16 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
-import Layout from "components/Layout"
-import ProjectCard from "components/ProjectCard"
+import Layout from "../components/Layout"
+import ProjectCard from "../components/ProjectCard"
 import LogoV2 from "../images/logov2.png"
 
 const WorkTitle = styled("h1")`
   margin-bottom: 1em;
 `
 
-const Work = ({ projects, meta }) => (
+const Work = ({ projects, meta }: { projects: any; meta: any }) => (
   <>
     <Helmet
       title={meta.title}
@@ -62,7 +61,7 @@ const Work = ({ projects, meta }) => (
     <Layout>
       <WorkTitle>Work</WorkTitle>
       <>
-        {projects.map((project, i) => (
+        {projects.map((project: any, i: number) => (
           <ProjectCard
             key={i}
             category={project.node.project_category}
@@ -77,16 +76,12 @@ const Work = ({ projects, meta }) => (
   </>
 )
 
-export default ({ data }) => {
+export default ({ data }: { data: any }) => {
   const projects = data.prismic.allProjects.edges
   const meta = data.site.siteMetadata
   if (!projects) return null
 
   return <Work projects={projects} meta={meta} />
-}
-
-Work.propTypes = {
-  projects: PropTypes.array.isRequired,
 }
 
 export const query = graphql`

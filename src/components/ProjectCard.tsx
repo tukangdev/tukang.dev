@@ -2,11 +2,10 @@ import React from "react"
 import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import styled from "@emotion/styled"
-import dimensions from "styles/dimensions"
-import colors from "styles/colors"
-import Image from "gatsby-image"
+import dimensions from "../styles/dimensions"
+import colors from "../styles/colors"
 
-const ServiceCardContainer = styled(Link)`
+const ProjectCardContainer = styled(Link)`
   display: grid;
   grid-template-columns: 4fr 7fr;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.06);
@@ -54,9 +53,9 @@ const ServiceCardContainer = styled(Link)`
   }
 `
 
-const ServiceCardContent = styled("div")`
+const ProjectCardContent = styled("div")`
   background: white;
-  padding: 2em 3em 2em 3em;
+  padding: 4em 3em 2.25em 3em;
   position: relative;
 
   &:before {
@@ -81,27 +80,27 @@ const ServiceCardContent = styled("div")`
   }
 `
 
-const ServiceCardCategory = styled("h6")`
+const ProjectCardCategory = styled("h6")`
   font-weight: 600;
   color: ${colors.grey600};
 `
 
-const ServiceCardTitle = styled("h3")`
+const ProjectCardTitle = styled("h3")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 `
 
-const ServiceCardBlurb = styled("div")`
+const ProjectCardBlurb = styled("div")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 5em;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     margin-bottom: 2.5em;
   }
 `
 
-const ServiceCardAction = styled("div")`
+const ProjectCardAction = styled("div")`
   font-weight: 600;
   text-decoration: none;
   color: currentColor;
@@ -115,17 +114,18 @@ const ServiceCardAction = styled("div")`
   }
 `
 
-const ServiceCardImageContainer = styled("div")`
+const ProjectCardImageContainer = styled("div")`
+  background: ${colors.grey200};
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   overflow: hidden;
   position: relative;
   // padding-left: 2em;
   // padding-right: 2em;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
-    padding-top: 3em;
+    // padding-top: 3em;
     max-height: 200px;
     flex-direction: column;
     align-items: center;
@@ -156,22 +156,32 @@ const ServiceCardImageContainer = styled("div")`
   }
 `
 
-const ServiceCard = ({ title, description, imageFixed }) => (
-  <ServiceCardContainer to={`/`}>
-    <ServiceCardImageContainer>
-      <Image fixed={imageFixed} />
-    </ServiceCardImageContainer>
-    <ServiceCardContent className="ServiceCardContent">
-      <ServiceCardTitle>{title[0].text}</ServiceCardTitle>
-      <ServiceCardBlurb>{RichText.render(description)}</ServiceCardBlurb>
-      {/* <ServiceCardAction className="ServiceCardAction">
+const ProjectCard = ({
+  category,
+  title,
+  description,
+  thumbnail,
+  uid,
+}: {
+  category: any[]
+  title: any[]
+  description: any[]
+  thumbnail: any
+  uid: string
+}) => (
+  <ProjectCardContainer to={`/work/${uid}`}>
+    <ProjectCardContent className="ProjectCardContent">
+      <ProjectCardCategory>{category[0].text}</ProjectCardCategory>
+      <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
+      <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb>
+      <ProjectCardAction className="ProjectCardAction">
         Details <span>&#8594;</span>
-      </ServiceCardAction> */}
-    </ServiceCardContent>
-    {/* <ServiceCardImageContainer className="ServiceCardImageContainer">
+      </ProjectCardAction>
+    </ProjectCardContent>
+    <ProjectCardImageContainer className="ProjectCardImageContainer">
       {thumbnail && <img src={thumbnail.url} alt={title[0].text} />}
-    </ServiceCardImageContainer> */}
-  </ServiceCardContainer>
+    </ProjectCardImageContainer>
+  </ProjectCardContainer>
 )
 
-export default ServiceCard
+export default ProjectCard
